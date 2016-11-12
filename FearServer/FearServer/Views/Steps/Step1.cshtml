@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Secret battle plan to take over the world</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="/Content/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/Content/css/lib/toastr.min.css" />
+    <link rel="stylesheet" href="/Content/css/app.css" />
+</head>
+<body>
+    <div class="page-container">
+        <div>
+            <div class="row vertical-align">
+                <div class="col-xs-2">
+                    <div class="circular-logo pull-right"></div>
+                </div>
+                <div class="col-xs-10">
+                    <h1>You have got a message from Spymaster</h1>
+                    <p class="text-xs-justify">
+                        The website is protected with a 4 digits code pin and no one in other agencies has been able to write a proper program to break it. Start your mission by writing a program to brute force the pin code.
+                    </p>
+                    <p>
+                        <div id="countdown">
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-xs-center div-top-margin">
+            <form method="GET" action="/Step1" class="form-horizontal">
+                <div class="form-group">
+                    <label for="authtoken" class="col-sm-2 control-label">Auth token :</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="authtoken" type="text" name="authtoken" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="form-group">
+                    <label for="pincode" class="col-sm-2 control-label">Pin code :</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" id="pincode" type="text" name="pincode" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <button class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="/Content/scripts/lib/jquery-1.6.4.min.js"></script>
+    <script type="text/javascript" src="/Content/scripts/lib/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="/Content/scripts/lib/ponystream.min.js"></script>
+    <script type="text/javascript" src="/Content/scripts/lib/toastr.min.js"></script>
+    <script type="text/javascript" src="/Content/scripts/lib/jquery.signalR-2.2.1.min.js"></script>
+    <script type="text/javascript" src="/signalr/hubs"></script>
+    <script type="text/javascript" src="/Content/scripts/app.js"></script>
+</body>
+</html>
