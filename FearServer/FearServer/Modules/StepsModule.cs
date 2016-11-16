@@ -13,7 +13,7 @@ namespace FearServer.Modules
         private readonly IHubContext _notificationHub;
 
         private const string Pincode = "9723";
-        private const string Password = "raphestbeau";
+        private const string Password = "poniesaresocute";
 
         public StepsModule(InMemoryUserRepository inMemoryUserRepository, IHubContext notificationHub)
         {
