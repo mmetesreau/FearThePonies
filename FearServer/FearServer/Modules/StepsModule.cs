@@ -1,22 +1,21 @@
 ﻿using FearServer.Repositories;
 using Microsoft.AspNet.SignalR;
 using Nancy;
-using System;
 
 namespace FearServer.Modules
 {
     public class StepsModule : NancyModule
     {
-        private readonly DateTime _endOfTheWorld = new DateTime(2016, 11, 12, 14, 00, 00);
-
+        private readonly Configuration _configuration;
         private readonly InMemoryUserRepository _inMemoryUserRepository;
         private readonly IHubContext _notificationHub;
 
         private const string Pincode = "9723";
         private const string Password = "poniesaresocute";
 
-        public StepsModule(InMemoryUserRepository inMemoryUserRepository, IHubContext notificationHub)
+        public StepsModule(Configuration configuration, InMemoryUserRepository inMemoryUserRepository, IHubContext notificationHub)
         {
+            _configuration = configuration;
             _inMemoryUserRepository = inMemoryUserRepository;
             _notificationHub = notificationHub;
 
@@ -29,8 +28,8 @@ namespace FearServer.Modules
         }
 
         private dynamic GetEndOfTheWorld(dynamic _)
-        {
-            return _endOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss");
+        { 
+            return  _configuration.EndOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
         private dynamic GetStep1(dynamic _)

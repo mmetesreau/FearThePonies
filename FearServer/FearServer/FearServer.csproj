@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="AuthToken.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Models\Params\RegisterParams.cs" />
     <Compile Include="Modules\StepsModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
