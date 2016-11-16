@@ -36,7 +36,7 @@ namespace FearServer.Modules
         {
             var pincode = this.Request.Query["pincode"];
 
-            if (CheckAnswerAndNotify(pincode, Pincode, "step 1"))
+            if (!CheckAnswerAndNotify(pincode, Pincode, "step 1"))
                 return View["Step1"];
 
             return Response.AsRedirect("/Step9861");
@@ -51,7 +51,7 @@ namespace FearServer.Modules
         {
             var password = this.Request.Query["password"];
 
-            if (CheckAnswerAndNotify(password, Password, "step 2"))
+            if (!CheckAnswerAndNotify(password, Password, "step 2"))
                 return View["Step2"];
 
             return Response.AsRedirect("/Step2345");
