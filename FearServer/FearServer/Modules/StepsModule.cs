@@ -7,7 +7,7 @@ namespace FearServer.Modules
 {
     public class StepsModule : NancyModule
     {
-        private readonly DateTime EndOfTheWorld = new DateTime(2016,11,12,14,00,00);
+        private readonly DateTime _endOfTheWorld = new DateTime(2016,11,12,14,00,00);
 
         private readonly InMemoryUserRepository _inMemoryUserRepository;
         private readonly IHubContext _notificationHub;
@@ -30,7 +30,7 @@ namespace FearServer.Modules
 
         private dynamic GetEndOfTheWorld(dynamic _)
         {
-            return EndOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss");
+            return _endOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss");
         }
 
         private dynamic GetStep1(dynamic _)
