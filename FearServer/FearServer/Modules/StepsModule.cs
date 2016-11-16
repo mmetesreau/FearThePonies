@@ -7,7 +7,7 @@ namespace FearServer.Modules
 {
     public class StepsModule : NancyModule
     {
-        private readonly DateTime _endOfTheWorld = new DateTime(2016,11,12,14,00,00);
+        private readonly DateTime _endOfTheWorld = new DateTime(2016, 11, 12, 14, 00, 00);
 
         private readonly InMemoryUserRepository _inMemoryUserRepository;
         private readonly IHubContext _notificationHub;
@@ -20,12 +20,12 @@ namespace FearServer.Modules
             _inMemoryUserRepository = inMemoryUserRepository;
             _notificationHub = notificationHub;
 
-            Get["/endoftheworld"]   = GetEndOfTheWorld;
-            Get["/step1"]           = GetStep1;
-            Get["/step2"]           = GetWrongStep;
-            Get["/step3"]           = GetWrongStep;
-            Get["/step9861"]        = GetStep9861;
-            Get["/step2345"]        = GetStep2345;
+            Get["/endoftheworld"] = GetEndOfTheWorld;
+            Get["/step1"] = GetStep1;
+            Get["/step2"] = GetWrongStep;
+            Get["/step3"] = GetWrongStep;
+            Get["/step9861"] = GetStep9861;
+            Get["/step2345"] = GetStep2345;
         }
 
         private dynamic GetEndOfTheWorld(dynamic _)
@@ -35,15 +35,10 @@ namespace FearServer.Modules
 
         private dynamic GetStep1(dynamic _)
         {
-            var authToken = this.Request.Query["authtoken"];
             var pincode = this.Request.Query["pincode"];
 
-            var pseudo = AuthToken.Parse(authToken);
-
-            if (!_inMemoryUserRepository.Exist(pseudo) || string.IsNullOrEmpty(pincode) || pincode != Pincode)
+            if (CheckAnswerAndNotify(pincode, Pincode, "step 1"))
                 return View["Step1"];
-
-            _notificationHub.Clients.All.send($"{pseudo} hacked step 1");
 
             return Response.AsRedirect("/Step9861");
         }
@@ -55,15 +50,10 @@ namespace FearServer.Modules
 
         private dynamic GetStep9861(dynamic _)
         {
-            var authToken = this.Request.Query["authtoken"];
             var password = this.Request.Query["password"];
 
-            var pseudo = AuthToken.Parse(authToken);
-
-            if (!_inMemoryUserRepository.Exist(pseudo) || string.IsNullOrEmpty(password) || password != Password)
+            if (CheckAnswerAndNotify(password, Password, "step 2"))
                 return View["Step2"];
-
-            _notificationHub.Clients.All.send($"{pseudo} hacked step 2");
 
             return Response.AsRedirect("/Step2345");
         }
@@ -71,6 +61,20 @@ namespace FearServer.Modules
         private dynamic GetStep2345(dynamic _)
         {
             return View["Step3"];
+        }
+
+        private bool CheckAnswerAndNotify(string userAnswer, string realAnswer, string stepName)
+        {
+            var authToken = this.Request.Query["authtoken"];
+
+            var pseudo = AuthToken.Parse(authToken);
+
+            if (!_inMemoryUserRepository.Exist(pseudo) || string.IsNullOrEmpty(userAnswer) || userAnswer != realAnswer)
+                return false;
+
+            _notificationHub.Clients.All.send($"{pseudo} hacked {stepName}");
+
+            return true;
         }
     }
 }
