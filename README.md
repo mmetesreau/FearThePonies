@@ -12,4 +12,4 @@ Start your mission and don't fail. You're our only hope...
 * Monoalphabetic substitution cipher
 * Vigenere cipher
 
-Based on Raphaël Wach [@raphaelwach](https://twitter.com/raphaelwach) amazing code dojo
+Based on Raphaël Wach ([@raphaelwach](https://twitter.com/raphaelwach)) amazing code dojo
