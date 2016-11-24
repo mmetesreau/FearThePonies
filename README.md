@@ -12,4 +12,20 @@ Start your mission and don't fail. You're our only hope...
 * Monoalphabetic substitution cipher
 * Vigenere cipher
 
+##Technical Instructions:
+
+### Requirements
+- NET Core 1.1 SDK
+
+### Install & Run
+
+```
+dotnet restore
+dotnet run
+```
+
+Go to ```http://localhost:5000```
+
+##Special thanks:
+
 Based on Raphaël Wach ([@raphaelwach](https://twitter.com/raphaelwach)) amazing code dojo

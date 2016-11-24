@@ -18,7 +18,7 @@ namespace FearServer
 
         public void Handle(HttpStatusCode statusCode, NancyContext context)
         {
-            var response = RenderView(context, "Errors/NotFound.cshtml");
+            var response = RenderView(context, "Errors/NotFound.html");
             response.StatusCode = HttpStatusCode.NotFound;
             context.Response = response;
         }
