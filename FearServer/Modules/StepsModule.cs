@@ -1,5 +1,6 @@
 ﻿using System;
 using FearServer.Repositories;
+using Microsoft.AspNetCore.SignalR;
 using Nancy;
 
 namespace FearServer.Modules
@@ -9,7 +10,7 @@ namespace FearServer.Modules
         private const string Pincode = "9723";
         private const string Password = "poniesaresocute";
 
-        public StepsModule(AppConfiguration appConfiguration, InMemoryUserRepository inMemoryUserRepository, NotificationHub notificationHub)
+        public StepsModule(AppConfiguration appConfiguration, InMemoryUserRepository inMemoryUserRepository, IHubContext notificationHub)
         {
             Func<string,string,string, bool> checkAnswerAndNotify = (string userAnswer, string realAnswer, string stepName) =>
             {
