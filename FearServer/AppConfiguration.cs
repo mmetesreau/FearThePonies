@@ -2,11 +2,11 @@
 
 namespace FearServer
 {
-    public class Configuration
+    public class AppConfiguration
     {
         public readonly DateTime EndOfTheWorld;
 
-        public Configuration(DateTime endOfTheWorld)
+        public AppConfiguration(DateTime endOfTheWorld)
         {
             EndOfTheWorld = endOfTheWorld;
         }

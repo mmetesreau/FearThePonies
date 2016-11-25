@@ -5,7 +5,7 @@ namespace FearServer
 {
     class AuthToken
     {
-        private const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         private const int NoiseLength = 10;
 
         public static string Parse(string authToken)
@@ -24,7 +24,7 @@ namespace FearServer
                 throw new ArgumentException("Pseudo can not be null or empty");
 
             var random = new Random();
-            var noise = new string(Enumerable.Repeat(chars, NoiseLength).Select(s => s[random.Next(s.Length)]).ToArray());
+            var noise = new string(Enumerable.Repeat(Chars, NoiseLength).Select(s => s[random.Next(s.Length)]).ToArray());
 
             return $"{noise}{Cypher(pseudo)}";
         }

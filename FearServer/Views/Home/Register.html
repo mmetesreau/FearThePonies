@@ -1,5 +1,4 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<FearServer.Models.RegisterViewModel>
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -12,17 +11,15 @@
 </head>
 <body>
     <div class="page-container">
-        @if (Model.IsSuccessful)
-        {
+        @If.IsSuccessful
             <div class="text-xs-center">
-                Here is your auth token: <b>@Model.AuthToken</b>. Don'it lose it, it's needed to submit your anwser :)
+                Here is your auth token: <b>@Model.AuthToken</b>. Don't lose it, it's needed to submit your anwser :)
             </div>
             <div class="text-xs-center div-top-margin">
                 <a class="btn btn-success" href="/Step1">Let fight begin</a>
             </div>
-        }
-        else
-        {
+        @EndIf
+        @IfNot.IsSuccessful
             <div class="text-xs-center">@Model.Error</div>
             <div class="text-xs-center div-top-margin">
                 <form class="form-inline" method="POST">
@@ -33,7 +30,7 @@
                     </div>
                 </form>
             </div>
-        }
+        @EndIf
     </div>
 </body>
 </html>
