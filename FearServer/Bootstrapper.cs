@@ -16,13 +16,31 @@ namespace FearServer
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
-            var duration = TimeSpan.FromHours(1);
 
-            container.Register(new AppConfiguration(DateTime.Now.Add(duration)));
+            container.Register(GetAppConfiguration());
             container.Register(new InMemoryUserRepository());
             container.Register(Startup.ConnectionManager.GetHubContext<NotificationHub>());
 
             base.ApplicationStartup(container, pipelines);
+        }
+
+        private AppConfiguration GetAppConfiguration()
+        {
+            var duration = TimeSpan.FromHours(1);
+
+            var commandLineArgs = Environment.GetCommandLineArgs();
+
+            if (commandLineArgs?.Length == 3 && commandLineArgs[1] == "--duration")
+            {
+                int minutes;
+
+                if (int.TryParse(commandLineArgs[2], out minutes))
+                {
+                    duration = TimeSpan.FromMinutes(minutes);
+                }
+            }
+
+            return new AppConfiguration(DateTime.Now.Add(duration));
         }
     }
 }
