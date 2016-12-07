@@ -26,6 +26,12 @@ dotnet run
 
 Go to ```http://localhost:5000```
 
+By default the code dojo take 1 hour but you can specify the duration (in minutes):
+
+```
+dotnet run -- --duration 90 
+```
+
 ##Special thanks:
 
 Based on Raphaël Wach ([@raphaelwach](https://twitter.com/raphaelwach)) amazing code dojo
