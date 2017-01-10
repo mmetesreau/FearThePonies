@@ -7,6 +7,7 @@ namespace FearServer
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseUrls("http://*:5000")
                 .UseKestrel()
                 .UseStartup<Startup>()
                 .Build();
