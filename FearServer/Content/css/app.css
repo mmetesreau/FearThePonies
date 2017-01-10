@@ -63,3 +63,8 @@
     clear: both;
     margin-top: 20px;
 }
+
+.code {
+    padding: 0.2em;
+    background-color: rgba(0,0,0,0.04);
+}
