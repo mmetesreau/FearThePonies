@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY ./FearServer .
 
-ENV APP_URL  http://+:5000
+ENV APP_URL  http://+:8080
 
-EXPOSE 5000
+EXPOSE 8080
 
 RUN dotnet restore
 
-ENTRYPOINT ["dotnet", "run -- --duration 60"]
+ENTRYPOINT ["dotnet", "run"]
