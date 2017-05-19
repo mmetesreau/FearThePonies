@@ -26,9 +26,9 @@ namespace FearServer.Modules
                 return true;
             };
 
-            Get("/endoftheworld", _ => appConfiguration.EndOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss"));
+            Get("/endoftheworld", _ => "2017/05/19 17:00:00";
 
-            Get("/step1", _ => 
+            Get("/step1", _ =>
             {
                 var pincode = this.Request.Query["pincode"];
 
@@ -42,7 +42,7 @@ namespace FearServer.Modules
 
             Get("/step3", _ => View["WrongStep"]);
 
-            Get("/step9861", _ => 
+            Get("/step9861", _ =>
             {
                 var password = this.Request.Query["password"];
 
