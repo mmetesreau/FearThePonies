@@ -19,6 +19,7 @@ namespace FearServer
 
             container.Register(GetAppConfiguration());
             container.Register(new InMemoryUserRepository());
+            container.Register(new InMemoryScoreRepository());
             container.Register(Startup.ConnectionManager.GetHubContext<NotificationHub>());
 
             base.ApplicationStartup(container, pipelines);
@@ -26,21 +27,25 @@ namespace FearServer
 
         private AppConfiguration GetAppConfiguration()
         {
-            var duration = TimeSpan.FromHours(1);
+            return new AppConfiguration(DateTime.Parse("2017/06/22 12:30:00"));
+            
+            /*
+                var duration = TimeSpan.FromHours(1);
 
-            var commandLineArgs = Environment.GetCommandLineArgs();
+                var commandLineArgs = Environment.GetCommandLineArgs();
 
-            if (commandLineArgs?.Length == 3 && commandLineArgs[1] == "--duration")
-            {
-                int minutes;
-
-                if (int.TryParse(commandLineArgs[2], out minutes))
+                if (commandLineArgs?.Length == 3 && commandLineArgs[1] == "--duration")
                 {
-                    duration = TimeSpan.FromMinutes(minutes);
-                }
-            }
+                    int minutes;
 
-            return new AppConfiguration(DateTime.Now.Add(duration));
+                    if (int.TryParse(commandLineArgs[2], out minutes))
+                    {
+                        duration = TimeSpan.FromMinutes(minutes);
+                    }
+                }
+
+                return new AppConfiguration(DateTime.Now.Add(duration));
+             */
         }
     }
 }

@@ -40,35 +40,13 @@
 
     var notificationHub = $.connection.notificationHub;
 
-    $.connection.hub.start().done(function () {
-
-        var achievements = loadAchievements();
-
-        //achievements.forEach(function (achievement) { showAchievement(achievement); });
-    });
+    $.connection.hub.start().done(function () {});
 
     notificationHub.client.send = function (achievement) {
-
-        var achievements = loadAchievements();
-
-        achievements.push(achievement);
-
-        saveAchievements(achievements);
-
         showAchievement(achievement);
     }
 
-    function loadAchievements() {
-        var achievementsItem = sessionStorage.getItem('achievements');
-
-        return achievementsItem ? JSON.parse(achievementsItem) : [];
-    }
-
-    function saveAchievements(achievements) {
-        sessionStorage.setItem('achievements', JSON.stringify(achievements));
-    }
-
     function showAchievement(achievement) {
-        toastr.success(achievement)
+        toastr.success(achievement.pseudo + " hacked step " + achievement.step);
     }
 });
