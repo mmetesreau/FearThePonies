@@ -32,8 +32,7 @@ namespace FearServer
             if (!DateTime.TryParse(Environment.GetEnvironmentVariable("END"), out endOfTheWorld))
             {
                 var commandLineArgs = Environment.GetCommandLineArgs();
-
-                if (commandLineArgs?.Length != 3 || commandLineArgs[1] == "--end" || !DateTime.TryParse(commandLineArgs[2], out endOfTheWorld))
+                if (commandLineArgs?.Length != 3 || commandLineArgs[1] != "--end" || !DateTime.TryParse(commandLineArgs[2], out endOfTheWorld))
                 {
                     endOfTheWorld = DateTime.Now.Add(TimeSpan.FromMinutes(60));
                 }
