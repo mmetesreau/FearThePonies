@@ -26,7 +26,7 @@ namespace FearServer.Modules
                 return true;
             };
 
-            Get("/endoftheworld", _ => "2017/05/19 17:00:00");
+            Get("/endoftheworld", _ => "2017/06/22 12:30:00");
 
             Get("/step1", _ =>
             {
