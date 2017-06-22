@@ -60,7 +60,7 @@ namespace FearServer.Modules
             {
                 var finalAnswer = this.Request.Query["answer"];
 
-                if (!checkAnswerAndNotify(finalAnswer, FinalAnswer, 4))
+                if (!checkAnswerAndNotify(finalAnswer, FinalAnswer, 3))
                     return Response.AsRedirect("/step2345");
                 
                 return View["Step4"];
