@@ -27,25 +27,18 @@ namespace FearServer
 
         private AppConfiguration GetAppConfiguration()
         {
-            return new AppConfiguration(DateTime.Parse("2017/06/22 12:30:00"));
-            
-            /*
-                var duration = TimeSpan.FromHours(1);
+            DateTime endOfTheWorld;
 
+            if (!DateTime.TryParse(Environment.GetEnvironmentVariable("END"), out endOfTheWorld))
+            {
                 var commandLineArgs = Environment.GetCommandLineArgs();
 
-                if (commandLineArgs?.Length == 3 && commandLineArgs[1] == "--duration")
+                if (commandLineArgs?.Length != 3 || commandLineArgs[1] == "--end" || !DateTime.TryParse(commandLineArgs[2], out endOfTheWorld))
                 {
-                    int minutes;
-
-                    if (int.TryParse(commandLineArgs[2], out minutes))
-                    {
-                        duration = TimeSpan.FromMinutes(minutes);
-                    }
+                    endOfTheWorld = DateTime.Now.Add(TimeSpan.FromMinutes(60));
                 }
-
-                return new AppConfiguration(DateTime.Now.Add(duration));
-             */
+            }
+            return new AppConfiguration(endOfTheWorld);
         }
     }
 }
