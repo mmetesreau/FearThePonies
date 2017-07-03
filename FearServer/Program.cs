@@ -1,5 +1,6 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
-    
+
 namespace FearServer
 {
     public class Program
@@ -7,7 +8,7 @@ namespace FearServer
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
-                .UseUrls("http://*:5000")
+                .UseUrls("http://*:8080")
                 .UseKestrel()
                 .UseStartup<Startup>()
                 .Build();

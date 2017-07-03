@@ -68,3 +68,21 @@
     padding: 0.2em;
     background-color: rgba(0,0,0,0.04);
 }
+
+.circular-pinkie {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    background: rgba(0, 0, 0, 0.3) url('/content/img/pinkie.png') no-repeat center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.dashboard-container {
+    padding-top: 50px;
+    width: 80%;
+    margin: 15px auto; 
+}

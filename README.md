@@ -24,13 +24,21 @@ dotnet restore
 dotnet run
 ```
 
-Go to ```http://localhost:5000```
+Go to ```http://localhost:8080```
 
-By default the code dojo take 1 hour but you can specify the duration (in minutes):
+By default the code dojo take 1 hour but you can specify the ending date:
 
 ```
-dotnet run -- --duration 90 
+dotnet run -- --end "2017/06/22 12:30:00" 
 ```
+
+or
+
+```
+$env:END="2017/06/22 12:30:00"
+dotnet run -- --end "2017/06/22 12:30:00" 
+```
+
 
 ## Special thanks:
 
