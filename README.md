@@ -24,7 +24,7 @@ dotnet restore
 dotnet run
 ```
 
-Go to ```http://localhost:5000```
+Go to ```http://localhost:8080```
 
 By default the code dojo take 1 hour but you can specify the ending date:
 
