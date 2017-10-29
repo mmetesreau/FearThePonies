@@ -36,7 +36,7 @@ or
 
 ```
 $env:END="2017/06/22 12:30:00"
-dotnet run -- --end "2017/06/22 12:30:00" 
+dotnet run
 ```
 
 On linux, the default timezone is UTC so you'll have to set it before running:
