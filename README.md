@@ -39,6 +39,10 @@ $env:END="2017/06/22 12:30:00"
 dotnet run
 ```
 
+On linux, the default timezone is UTC so you'll have to set it before running:
+```
+docker container run -p 8080:8080 feartheponies sh -c "echo "Europe/Paris" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata && dotnet run"
+```
 
 ## Special thanks:
 
