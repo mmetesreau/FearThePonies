@@ -1,11 +1,12 @@
-FROM microsoft/dotnet:1.1-sdk
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+WORKDIR /src
 
-WORKDIR /app
-
-COPY ./FearServer .
-
-EXPOSE 8080
+COPY ./src ./
 
 RUN dotnet restore
+RUN dotnet publish -c Release -o out
 
-CMD ["dotnet", "run"]
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+COPY --from=build-env /src/out .
+ENTRYPOINT ["dotnet", "FearThePonies.dll"]

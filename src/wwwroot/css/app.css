@@ -1,0 +1,204 @@
+h1 {
+    margin-top: 0;
+}
+
+.background {
+    background-color: #d098e4;
+    font-family: 'Lato', sans-serif;
+}
+
+.messageContainer {
+    border-radius: 0.5em;
+    background-color: #9a6fab;
+    color: #ffffff;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 1em;
+    padding: 2em;
+    margin: 2em;
+}
+
+.message {
+    display: grid;
+    gap: 2em;
+    align-items: center;
+    grid-template-columns: auto 1fr;
+}
+
+.message .author {
+    margin: auto;
+    text-align: center;
+    line-height: 0;
+    border: 4px solid rgba(200, 200, 200, 0.4);
+    border-radius: 50%;
+    transition: linear 0.25s;
+    height: 128px;
+    width: 128px;
+}
+
+.message .author img {
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
+    margin-bottom: 1.2em;
+}
+
+.message .content p {
+    margin: 0.5em 0
+}
+
+.message .content a {
+    color: #ffffff;
+}
+
+.message .actions {
+    margin-top: 1.2em;
+    display: flex;
+    gap: 2em;
+    justify-content: center;
+}
+
+.message .action {
+    border-radius: 0.5em;
+    background-color: #ffffff;
+    color: #9a6fab;
+    padding: 0.5em;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.message .action:hover {
+    color: #d098e4;
+}
+
+.teamStatusContainer {
+    background-color: #ffffff;
+    border-radius: 4px;
+    color: #000000;
+    padding: 3em;
+    margin: 2em;
+}
+
+.teamStatus {
+    display:grid;
+    align-items:center;
+    gap:1em;
+    grid-template-columns: 1fr 2fr auto 2fr auto 2fr auto;
+}
+
+.teamStatus .teamName {
+    text-align: right;
+}
+
+.teamStatus .separatorContainer {
+    width: 100%;
+}
+
+.teamStatus .separator {
+    background-color: grey;
+    height: 0.2em;
+    width: 100%;
+}
+
+.teamStatus .separator.completed {
+    background-color: #379d00;
+}
+
+.teamStatus .challenge {
+    position: relative;
+}
+
+.teamStatus .challenge .trophy {
+    background-color: grey;
+    margin: auto;
+    text-align: center;
+    line-height: 0;
+    border: 4px grey;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teamStatus .challenge.completed .trophy {
+    background-color: #379d00;
+    border: 4px #379d00;
+}
+
+.teamStatus .challenge .trophy img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.teamStatus .challenge .detail {
+    text-align: center;
+    position: absolute;
+    top: 100%;
+    left: -75px;
+    width: 200px;
+    font-size: small;
+}
+
+.formContainer {
+    border-radius: 0.5em;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 3em;
+    margin: 2em;
+}
+
+.formContainer label {
+    line-height: 2em;
+}
+
+.formContainer input {
+    padding: 4px 12px;
+    line-height: 1.2em;
+    border-radius: 4px;
+    border: 1px solid #b8b8b5
+}
+
+.formContainer input:disabled {
+    background-color: #f6f8fa;
+    color: #656d76;
+    width: 26em;
+}
+
+.formContainer .btn {
+    margin-top: 0.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+    color: #ffffff;
+    background-color: #d098e4;
+    border-width: 0;
+    line-height: 1.2em;
+    padding: 0.5em 1.5em;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.formContainer .btn:hover {
+    background-color: #9a6fab;
+}
+
+.formContainer .error {
+    color: #ef4444;
+}
+
+.formContainer .welldone {
+    padding: 1em;
+    background-color: #379d00;
+    border-radius: 4px;
+    color: #ffffff;
+    margin-bottom: 1em;
+}
+
+.formContainer .welldone a {
+    color: #ffffff;
+}
