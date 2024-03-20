@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="wwwroot\css\app.css">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\pinkie1.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\pinkie2.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\spymaster1.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\spymaster2.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\spymaster3.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\spymaster4.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\lock.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\img\unlock.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\js\app.js">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="wwwroot\js\htmx.min.js">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Compile Include="Layout.fs" />
+        <Compile Include="Welcome.fs"/>
+        <Compile Include="Register.fs" />
+        <Compile Include="Challenge.fs" />
+        <Compile Include="FirstChallenge.fs" />
+        <Compile Include="SecondChallenge.fs" />
+        <Compile Include="ThirdChallenge.fs" />
+        <Compile Include="Leaderboard.fs" />
+        <Compile Include="NotFound.fs" />
+        <Compile Include="ServerError.fs" />
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Argu" Version="6.2.2" />
+        <PackageReference Include="Dapper" Version="2.1.35" />
+        <PackageReference Include="FSharp.SystemTextJson" Version="1.2.42" />
+        <PackageReference Include="Giraffe" Version="6.2.0"/>
+        <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.3" />
+    </ItemGroup>
+
+</Project>
