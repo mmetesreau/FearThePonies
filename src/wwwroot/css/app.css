@@ -61,14 +61,14 @@ h1 {
 .message .action {
     border-radius: 0.5em;
     background-color: #ffffff;
-    color: #9a6fab;
+    color: #9a6fab !important;
     padding: 0.5em;
     font-size: 1.2em;
     text-decoration: none;
 }
 
 .message .action:hover {
-    color: #d098e4;
+    color: #d098e4 !important;
 }
 
 .teamStatusContainer {
