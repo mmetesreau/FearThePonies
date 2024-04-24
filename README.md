@@ -34,6 +34,8 @@ $env:DURATION="120"
 dotnet run
 ```
 
+To access the leaderboard, refer to the following url ```http://localhost:5000/leaderboard```.
+
 ## Special thanks:
 
 Based on Raphaël Wach ([@raphaelwach](https://twitter.com/raphaelwach)) amazing code dojo
