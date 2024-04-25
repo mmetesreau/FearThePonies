@@ -30,7 +30,7 @@ let private challengeStatus isCompleted attempts = $"""
 
 let renderTeamStatus teamsStatus =
     match teamsStatus with
-    | [] -> ""
+    | [] -> """<div class="teamStatusContainer">Waiting players to join...</div>"""
     | teamsStatus ->
         teamsStatus
         |> List.map (fun teamStatus -> $"""
