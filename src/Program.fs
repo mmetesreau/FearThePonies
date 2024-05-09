@@ -379,7 +379,6 @@ module Http =
     ]
 
 module Database =
-    open Microsoft.Data.Sqlite
     open System.Text.Json
     open System.Text.Json.Serialization
     open Dapper
@@ -387,17 +386,14 @@ module Database =
     let private jsonOptions =
         JsonFSharpOptions.Default().ToJsonSerializerOptions()
 
-    let private createConnection () =
-        new SqliteConnection "Data Source = feartheponies.db"
-
-    let createTables () =
-        use connection = createConnection ()
+    let createTables createConnection =
+        use connection = (createConnection: unit -> System.Data.IDbConnection) ()
         connection.Execute "
             CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, aggregate_name TEXT, aggregate_id TEXT, data TEXT);
             CREATE TABLE IF NOT EXISTS readmodels (id INTEGER PRIMARY KEY, readmodel_name TEXT, readmodel_id TEXT, data TEXT, UNIQUE(readmodel_name, readmodel_id));
         "
 
-    let insertTeamEvent (aggregateId: string) evt =
+    let insertTeamEvent (createConnection: unit -> System.Data.IDbConnection) (aggregateId: string) evt =
         use connection = createConnection ()
         connection.Execute("INSERT INTO events (aggregate_id, aggregate_name, data) VALUES (@aggregateId, @aggregateName, @data)", dict [
             "aggregateId", box aggregateId
@@ -406,7 +402,7 @@ module Database =
         ])
         |> ignore
 
-    let getTeamEvents (aggregateId: string) =
+    let getTeamEvents (createConnection: unit -> System.Data.IDbConnection) (aggregateId: string) =
         use connection = createConnection ()
         connection.Query<string>("SELECT data FROM events WHERE aggregate_id = @aggregateId AND aggregate_name = @aggregateName", dict [
             "aggregateId", box aggregateId
@@ -415,7 +411,7 @@ module Database =
         |> Seq.map (fun data -> JsonSerializer.Deserialize<Domain.Team.Events>(data, jsonOptions))
         |> List.ofSeq
 
-    let upsertReadmodelData (readmodelName: string) (readmodelId: string) data =
+    let upsertReadmodelData (createConnection: unit -> System.Data.IDbConnection) (readmodelName: string) (readmodelId: string) data =
         use connection = createConnection ()
         connection.Execute("INSERT INTO readmodels (readmodel_id, readmodel_name, data) VALUES (@readmodelId, @readmodelName, @data) ON CONFLICT(readmodel_id, readmodel_name) DO UPDATE SET data = @data", dict [
             "readmodelId", box readmodelId
@@ -424,7 +420,7 @@ module Database =
         ])
         |> ignore
 
-    let getReadmodelData (readmodelName: string) (readmodelId: string) =
+    let getReadmodelData (createConnection: unit -> System.Data.IDbConnection) (readmodelName: string) (readmodelId: string) =
         use connection = createConnection ()
         connection.QueryFirstOrDefault<string>("SELECT data FROM readmodels WHERE readmodel_id = @readmodelId AND readmodel_name = @readmodelName", dict [
             "readmodelId", box readmodelId
@@ -432,7 +428,7 @@ module Database =
         ])
         |> Option.ofObj
 
-    let getAllReadmodelData (readmodelName: string) =
+    let getAllReadmodelData (createConnection: unit -> System.Data.IDbConnection) (readmodelName: string) =
         use connection = createConnection ()
         connection.Query<string>("SELECT data FROM readmodels WHERE readmodel_name = @readmodelName", dict [
             "readmodelName", box readmodelName
@@ -448,43 +444,54 @@ module Program =
 
     type CliArguments =
         | Duration of duration:int
+        | DbPath of db_path:string
 
         interface IArgParserTemplate with
             member s.Usage =
                 match s with
                 | Duration _ -> "specify duration in minutes"
+                | DbPath _ -> "specify database file path"
 
     [<EntryPoint>]
     let main args =
-        Database.createTables () |> ignore
+        let parser = ArgumentParser.Create<CliArguments>()
+        let results = parser.Parse args
 
         let endOfTheWorld =
-            let parser = ArgumentParser.Create<CliArguments>()
-            let results = parser.Parse args
-
             results.TryGetResult Duration
             |> Option.defaultWith(fun () ->
-                match System.Int32.TryParse(System.Environment.GetEnvironmentVariable("DURATION")) with
+                match System.Int32.TryParse(System.Environment.GetEnvironmentVariable("FTP_DURATION")) with
                 | true, duration -> duration
                 | _ -> 90)
             |> System.DateTime.Now.AddMinutes
 
+        let dataSource =
+            results.TryGetResult DbPath
+            |> Option.defaultValue (System.Environment.GetFolderPath System.Environment.SpecialFolder.LocalApplicationData)
+            |> fun dbPath -> System.IO.Path.Join(dbPath, "feartheponies.db")
+
+        let createConnection () =
+            new Microsoft.Data.Sqlite.SqliteConnection $"Data Source = {dataSource}" :> System.Data.IDbConnection
+
+
         let store: Readmodels.Store = {
-            Get = Database.getReadmodelData
-            GetAll = Database.getAllReadmodelData
-            Save = Database.upsertReadmodelData
+            Get = Database.getReadmodelData createConnection
+            GetAll = Database.getAllReadmodelData createConnection
+            Save = Database.upsertReadmodelData createConnection
         }
 
         let infra: Services.Infra = {
             EndOfTheWorld = endOfTheWorld.ToString("yyyy/MM/dd HH:mm:ss")
             GetNow = fun () -> System.DateTime.Now
-            GetEvents = Database.getTeamEvents >> Ok
+            GetEvents = (Database.getTeamEvents createConnection) >> Ok
             StoreEvents = fun id events ->
                 events
-                |> List.iter (Database.insertTeamEvent id)
+                |> List.iter (Database.insertTeamEvent createConnection id)
                 |> fun _ -> Readmodels.handle store id events
                 |> Ok
         }
+
+        Database.createTables createConnection |> ignore
 
         let builder = WebApplication.CreateBuilder()
 
