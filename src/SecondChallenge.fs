@@ -23,14 +23,14 @@ let render endOfTheWorld token completedAt = Layout.render "Secret battle plan t
         ny xjjrx ymfy tzw nshwjingqj jshwduynts fqltwnymr<br>
         mfx gjjs htruwtrnxji. kwtr stb, bj bnqq zxj fs jshwduynts pjd.<br>
         yt ijhdumjw tzw htrrzsnhfyntsx<br>
-        1 - hqjfs ymj pjd gd wjrtansl jajwd wjizsifsy qjyyjw.<br>
-        2 - rfu ymj pjd yt ymj knwxy qjyyjw tk ymj fqumfgjy.<br>
-        3 - htruqjyj ymj yfgqj bnym ymj wjxy tk ymj fqumfgjy xyfwynsl kwtr ymj qfxy qjyyjw tk ymj pjd.<br><br>
-        <u>jcfruqj bnym rdxjhwjy fx ymj pjd</u><br><br>
+        - hqjfs ymj pjd gd wjrtansl jajwd wjizsifsy qjyyjw.<br>
+        - rfu ymj pjd yt ymj knwxy qjyyjw tk ymj fqumfgjy.<br>
+        - htruqjyj ymj yfgqj bnym ymj wjxy tk ymj fqumfgjy xyfwynsl kwtr ymj qfxy qjyyjw tk ymj pjd.<br>
+        jcfruqj bnym rdxjhwjy fx ymj pjd<br>
         fghijklmnopqrstuvwxyzabcde<br>
         rdxjhwyzabcefgiklmnopqstuv<br>
         hzwwjsyqd, bj fwj zxnsl kjfwutsnjx fx pjd<br>
-        zxj ny yt ijhwduy edcxuikhuidfmlu. ymnx nx ymj ufxxbtwi yt fhhjxx tzw gfyyqj uqfs bnym ymj ktqqtbnsl ktwr.<br><br>
+        zxj ny yt ijhwduy edcxuikhuidfmlu. ymnx nx ymj ufxxbtwi yt fhhjxx tzw gfyyqj uqfs bnym ymj ktqqtbnsl ktwr.<br>
     </div>
     <div>
         { if Option.isNone completedAt then Challenge.form "challenge2" token else "" }
