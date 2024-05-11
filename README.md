@@ -1,10 +1,10 @@
-# Fear the ponies - Code dojo about cryptography basics 
+# Fear the ponies II - Code dojo about cryptography basics 
 
 ## Breaking news: We are under attack!
 
-Ponies just forged a secret alliance in order to end human civilization and their first move should happen in a couple of hours. We require your help to access their information which should allow us to arrange a strike back plan or at least buy us time.
+After their heavy defeat during the previous battle, ponies are back and are still aiming at taking over the world and finally subjugate humanity. Their new battle plan is about to start and our utmost fear may become reality, the ponies might have gathered new allies. 
 
-Start your mission and don't fail. You're our only hope...
+Being one of the brave warriors who saved the world during the last epic battle or being a new fighter, we rely on you. 
 
 ## Technical Instructions:
 

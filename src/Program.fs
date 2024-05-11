@@ -84,7 +84,7 @@ module Domain =
             | SubmitAnswerToFirstChallenge _, { LastChallengeCompleted = Some challenge } when challenge >= Challenge.FirstChallenge -> Ok []
             | SubmitAnswerToFirstChallenge cmd, { LastChallengeCompleted = None } ->
                 Ok [
-                    if hash cmd.Answer = "KXIZ595CS7UsBA56LLvZAk968Y4oOJT+WcpqvAMTw8Q="
+                    if hash cmd.Answer = "ND45jk6Zpo595uxX8AtqFKjm0KfdcU77q03L04X08wM="
                     then ChallengeCompleted { At = cmd.Now; Challenge = Challenge.FirstChallenge }
                     else WrongAnswerSubmitted { At = cmd.Now; Challenge = Challenge.FirstChallenge }
                 ]
@@ -93,7 +93,7 @@ module Domain =
             | SubmitAnswerToSecondChallenge _, { LastChallengeCompleted = Some challenge } when challenge >= Challenge.SecondChallenge -> Ok []
             | SubmitAnswerToSecondChallenge cmd, { LastChallengeCompleted = Some Challenge.FirstChallenge } ->
                 Ok [
-                    if hash cmd.Answer = "LZjgDIciRR66HUouBiyPmLp2pKQKNdovhkwZUxD8u+E="
+                    if hash cmd.Answer = "gVE1399OCmeCFnzFX2JfDOcfb3AB1zEw7eqWfGc0m4U="
                     then ChallengeCompleted { At = cmd.Now; Challenge = Challenge.SecondChallenge }
                     else WrongAnswerSubmitted { At = cmd.Now; Challenge = Challenge.SecondChallenge }
                 ]
@@ -102,7 +102,7 @@ module Domain =
             | SubmitAnswerToThirdChallenge _, { LastChallengeCompleted = Some challenge } when challenge >= Challenge.ThirdChallenge -> Ok []
             | SubmitAnswerToThirdChallenge cmd, { LastChallengeCompleted = Some Challenge.SecondChallenge } ->
                 Ok [
-                    if hash cmd.Answer = "c0dctApWjo2ooEXO0RATfhWfiQrE2og7axfcZRs6gEk="
+                    if hash cmd.Answer = "E3FIViKgJATreXUoJfhk9nv1e+BAky8UdwiBCBrVGvY="
                     then ChallengeCompleted { At = cmd.Now; Challenge = Challenge.ThirdChallenge }
                     else WrongAnswerSubmitted { At = cmd.Now; Challenge = Challenge.ThirdChallenge }
                 ]

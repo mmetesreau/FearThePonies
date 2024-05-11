@@ -148,6 +148,7 @@ h1 {
     color: #000000;
     padding: 3em;
     margin: 2em;
+    line-break: anywhere;
 }
 
 .formContainer label {
